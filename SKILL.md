@@ -7,7 +7,17 @@ description: 人文社科论文写作全流程指导。适用于文学、历史�
 
 > **适用范围**：文学、历史、哲学、社会学、传播学、新闻学、文化研究等人文社科领域的中文学术论文。
 >
-> **适配 Agent**：Claude Code / OpenClaw。也可作为 system prompt 用于 Coze、Kimi、ChatGPT 等平台。
+> **适配 Agent**：Codex / Claude Code / OpenClaw。也可作为 system prompt 用于 Coze、Kimi、ChatGPT 等平台。
+
+---
+
+## Codex 调用约定
+
+- 本仓库通过 `.agents/skills/humanities-thesis` 相对符号链接注册 Skill，名称为 `humanities-thesis`。在仓库内的新任务中可显式使用 `$humanities-thesis`，或由描述匹配相关论文任务。
+- 所有 `references/` 和 `scripts/` 路径均相对于本文件所在目录；先定位 Skill 根目录，不要假定当前工作目录或上传目录。
+- 使用 Skill 根目录下 `.venv/bin/python`（若存在），否则使用已安装 `requirements.txt` 的 Python。执行脚本前切换至 Skill 根目录，或使用脚本绝对路径。
+- 用户已给出草稿、评估或检索任务时，直接进入对应阶段；不要重复选题问答。仅有模糊写作意图时采用阶段零。
+- 文献检索显式选择公开接口，例如 `python scripts/search.py "关键词" --sources openalex,crossref --format json`。数据源配置状态不代表网络可用；检查 stderr、结果数量及元数据，报告限流或失败，不把空结果当作成功。
 
 ---
 

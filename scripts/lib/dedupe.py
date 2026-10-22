@@ -8,7 +8,7 @@ from __future__ import annotations
 import re
 import unicodedata
 
-from schema import Paper
+from .schema import Paper
 
 
 def _normalize(text: str) -> str:

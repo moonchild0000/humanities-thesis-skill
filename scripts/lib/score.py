@@ -9,7 +9,7 @@ import re
 import math
 import datetime
 
-from schema import Paper
+from .schema import Paper
 
 
 def _tokenize(text: str) -> set[str]:

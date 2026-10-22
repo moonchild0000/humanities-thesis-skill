@@ -57,6 +57,12 @@
 
 Agent 会自动读取 SKILL.md 并加载全部功能。
 
+### Codex
+
+本仓库已通过 `.agents/skills/humanities-thesis` 注册。选择此仓库并开启新 Codex 任务后，使用 `$humanities-thesis` 显式调用；相关论文需求也可由描述自动匹配。`AGENTS.md` 为后续任务保留调用约定。仅把 SKILL.md 放在普通仓库根目录不保证自动发现。
+
+详细安装范围、实际调用验证及跨仓库用法见 [Codex 适配说明](references/platform-guide.md#codex-适配与持续调用)。
+
 ### 方式三：命令行工具
 
 ```bash

@@ -8,7 +8,7 @@
 """
 from __future__ import annotations
 
-from schema import Paper
+from .schema import Paper
 
 
 def _join_authors_gbt(authors: list[str], max_show: int = 3) -> str:
