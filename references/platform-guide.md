@@ -1,8 +1,29 @@
 # Agent 适配说明
 
-本 skill 适配两个 agent 环境：**Claude Code** 和 **OpenClaw**。
+本 skill 适配 **Codex**、**Claude Code** 和 **OpenClaw**。
 
 ---
+
+## Codex 适配与持续调用
+
+仓库根目录的 `SKILL.md` 本身不保证 Codex 自动发现。本仓库提交了 `.agents/skills/humanities-thesis -> ../..`，让 Codex 从标准仓库 Skill 目录发现同一份主文件及其资源，无需复制内容。
+
+在选择本仓库、工作目录位于仓库内的新 Codex 任务中：
+
+1. 显式调用：`$humanities-thesis 请检查这份论文草稿`。
+2. 隐式调用：描述论文选题、文献检索等需求，由 Skill description 匹配；`AGENTS.md` 也明确要求相关任务使用此 Skill。自动发现不代表每个无关任务都强制执行。
+3. 安装依赖后，按 SKILL.md 的目录约定调用工具。只需指导时不要求 Python；检索和文档处理需要 Python 依赖及网络。
+
+新会话会重新发现仓库内已提交的 Skill。已有会话可能需要重新打开任务；云端聊天的可用 Skill 列表由宿主提供，CLI 验证不能证明已打开聊天会动态刷新。其他仓库不会继承本仓库的注册。需要跨仓库使用时，把完整 Skill 安装到该 Codex 实例支持的用户 Skill 目录（如 `~/.agents/skills/humanities-thesis`），或在目标仓库注册完整 Skill；不要依赖指向临时任务工作区的绝对链接。
+
+真实发现验证可使用 Codex app-server 的 `skills/list`，检查名称 `humanities-thesis`、`enabled: true`、`scope: repo` 及无解析错误。真实调用验证：
+
+```bash
+codex exec -C /path/to/humanities-thesis-skill \
+  '使用 $humanities-thesis 评估：有学者指出，文学必然改变社会。请实际运行评估工具并报告规则编号。'
+```
+
+检查执行轨迹中确实加载 SKILL.md 并运行 review.py，而不仅是模型自称使用了 Skill。此验证需要 Codex 自身可用的认证和模型服务；Python 测试不能替代它。
 
 ## 文件结构总览
 

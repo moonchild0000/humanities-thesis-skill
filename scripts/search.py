@@ -25,6 +25,9 @@ sys.path.insert(0, os.path.dirname(__file__))
 
 from lib.schema import Paper, SearchResult
 from lib.query import expand_query, suggest_queries
+from lib.dedupe import dedupe
+from lib.score import rank
+from lib.render import render_text, render_markdown, render_json
 
 # 注册所有数据源
 _SOURCES: dict[str, object] = {}
